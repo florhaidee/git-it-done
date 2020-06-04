@@ -1,5 +1,13 @@
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
+var repoNameEl = document.querySelector("#repo-name");
+var queryString = document.location.search;
+var getRepoName = function() {
+    var queryString = document.location.search;
+    var repoName = queryString.split("=")[1];
+    getRepoIssues(repoName);
+    repoNameEl.textContent = repoName;
+}
 var displayWarning = function(repo) {
     // add text to warning container
     limitWarningEl.textContent = "To see more than 30 issues, visit ";
@@ -59,5 +67,4 @@ var getRepoIssues = function(repo) {
         }
     });
 };
-  
-getRepoIssues("facebook/react");
+getRepoName();
